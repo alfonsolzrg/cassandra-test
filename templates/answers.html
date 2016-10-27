@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Questionnaire - Thanks!
+{% endblock %}
+
+{% block navbar_links %}
+<ul class="nav navbar-nav">
+  <li><a href="{{ url_for('index') }}">Questionnaire</a></li>
+  <li class="active"><a href="{{ url_for('answers') }}">Answers</a></li>
+  <li><a href="{{ url_for('feed') }}">Feed</a></li>
+</ul>
+{% endblock %}
+
+{% block container %}
+<div class="starter-template">
+  <h1>Answer List</h1>
+</div>
+
+<div class="table-responsive">
+  <table class="table table-condensed table-striped table-hover">
+    <thead>
+      <tr>
+        <th>User Id</th>
+        <th>Name</th>
+        <th>Vim/Emacs</th>
+        <th>IDE/Text Editor</th>
+        <th>Compiled/Interpreted</th>
+        <th>Favorite IDE</th>
+        <th>Marry/Kiss/Kill</th>
+        <th>Java/.NET</th>
+        <th>Cloud Providers</th>
+        <th>Team Size</th>
+        <th>Location</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for questionnaire in questionnaires %}
+      <tr>
+        <td>{{ questionnaire.user_id }}</td>
+        <td>{{ questionnaire.name|capitalize }}</td>
+        <td>{{ questionnaire.vim_emacs|capitalize }}</td>
+        <td>{{ questionnaire.ide_texteditor|capitalize }}</td>
+        <td>{{ questionnaire.compiled_interpreted|capitalize }}</td>
+        <td>{{ questionnaire.favorite_ide|capitalize }}</td>
+        <td>{{ questionnaire.marry_kiss_kill.marry|capitalize }} / {{ questionnaire.marry_kiss_kill.kiss|capitalize }} / {{ questionnaire.marry_kiss_kill.kill|capitalize }}</td>
+        <td>{{ questionnaire.java_net|capitalize }}</td>
+        <td>{{ questionnaire.cloud_providers|join(' ')|title }}</td>
+        <td>{{ questionnaire.team_size }}</td>
+        <td>{{ questionnaire.preferred_location|title }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

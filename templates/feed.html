@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Questionnaire - Thanks!
+{% endblock %}
+
+{% block navbar_links %}
+<ul class="nav navbar-nav">
+  <li><a href="{{ url_for('index') }}">Questionnaire</a></li>
+  <li><a href="{{ url_for('answers') }}">Answers</a></li>
+  <li class="active"><a href="{{ url_for('feed') }}">Feed</a></li>
+</ul>
+{% endblock %}
+
+{% block container %}
+<div class="starter-template">
+  <h1>Feed List</h1>
+</div>
+
+<div class="table-responsive">
+  <table class="table table-condensed table-striped table-hover">
+    <thead>
+      <tr>
+        <th>User Id</th>
+        <th>Datetime</th>
+        <th>Element Name</th>
+        <th>Element Value</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for activity in feed %}
+      <tr>
+        <td>{{ activity.user_id }}</td>
+        <td>{{ activity.change_datetime }}</td>
+        <td>{{ activity.element_name }}</td>
+        <td>{{ activity.element_value }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

@@ -1,0 +1,158 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Questionnaire
+{% endblock %}
+
+{% block navbar_links %}
+<ul class="nav navbar-nav">
+  <li class="active"><a href="{{ url_for('index') }}">Questionnaire</a></li>
+  <li><a href="{{ url_for('answers') }}">Answers</a></li>
+  <li><a href="{{ url_for('feed') }}">Feed</a></li>
+</ul>
+{% endblock %}
+
+{% block container %}
+<div class="starter-template">
+  <h1>Welcome to a Software Tinder Test!</h1>
+  <p class="lead">Answer the questions below and we'll match you immediately with a lovely CDMX startup, you'll love it!</p>
+</div>
+
+<form class="form-horizontal" method="POST" id="questionnaire">
+
+  <div class="form-group">
+    <label for="name" class="col-sm-2 control-label">Your name:</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="name" name="name" placeholder="Your name" v-model="name" v-on:blur="track('name')" required="required">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <div class="radio">
+        <label>
+          <input type="radio" name="vim_emacs" id="vim_emacs1" value="vim" v-model="vim_emacs" v-on:blur="track('vim_emacs')" required="required">
+          Vim - mostly because I can't figure out how to exit.
+        </label>
+      </div>
+      <div class="radio">
+        <label>
+          <input type="radio" name="vim_emacs" id="vim_emacs2" value="emacs" v-model="vim_emacs" v-on:blur="track('vim_emacs')" required="required">
+          Emacs - because I like using my hands.
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <div class="radio">
+        <label>
+          <input type="radio" name="ide_texteditor" id="ide_texteditor1" value="ide" v-model="ide_texteditor" v-on:blur="track('ide_texteditor')" required="required">
+          I'd rather use IDE's.
+        </label>
+      </div>
+      <div class="radio">
+        <label>
+          <input type="radio" name="ide_texteditor" id="ide_texteditor2" value="text_editor" v-model="ide_texteditor" v-on:blur="track('ide_texteditor')" required="required">
+          WOAH! Simple text editors for me, thanks.
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="favorite_ide" class="col-sm-2 control-label">Favorite IDE/Text Editor:</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="favorite_ide" name="favorite_ide" placeholder="Favorite IDE/Text Editor" v-model="favorite_ide" v-on:blur="track('favorite_ide')" required="required">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <div class="radio">
+        <label>
+          <input type="radio" name="compiled_interpreted" id="compiled_interpreted1" value="compiled" v-model="compiled_interpreted" v-on:blur="track('compiled_interpreted')" required="required">
+          I prefer compiled languages. <a href="https://xkcd.com/303/">I like to play with swords while I wait</a>.
+        </label>
+      </div>
+      <div class="radio">
+        <label>
+          <input type="radio" name="compiled_interpreted" id="compiled_interpreted2" value="interpreted" v-model="compiled_interpreted" v-on:blur="track('compiled_interpreted')" required="required">
+          I prefered interpreted languages. <a href="http://starecat.com/content/wp-content/uploads/i-figured-out-how-to-turn-on-my-microwave-using-python.jpg">I even use them to turn on my microwave!</a>
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="marry" class="col-sm-2 control-label">Language to Marry:</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="marry" placeholder="Language to Marry" v-model="marry" name="marry" v-on:blur="track('marry')" required="required">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="kiss" class="col-sm-2 control-label">Language to Kiss:</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="kiss" placeholder="Language to Kiss" v-model="kiss" name="kiss" v-on:blur="track('kiss')" required="required">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="kill" class="col-sm-2 control-label">Language to Kill:</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="kill" placeholder="Language to Kill" v-model="kill" name="kill" v-on:blur="track('kill')" required="required">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <div class="radio">
+        <label>
+          <input type="radio" name="java_net" id="java_net1" value="java" v-model="java_net" v-on:blur="track('java_net')" required="required">
+          Java is king.
+        </label>
+      </div>
+      <div class="radio">
+        <label>
+          <input type="radio" name="java_net" id="java_net2" value="net" v-model="java_net" v-on:blur="track('java_net')" required="required">
+          .NET is the rightful king of the Seven Kingdoms.
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="cloud_providers" class="col-sm-2 control-label">Cloud Providers you like:</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="cloud_providers" placeholder="Cloud Providers you like" name="cloud_providers" v-model="cloud_providers" v-on:blur="track('cloud_providers')" required="required">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="team_size" class="col-sm-2 control-label">Development Team Size you like:</label>
+    <div class="col-sm-10">
+      <input type="number" class="form-control" id="team_size" name="team_size" placeholder="Development Team Size you like" v-model="team_size" v-on:blur="track('team_size')" required="required">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="preferred_location" class="col-sm-2 control-label">Preferred City/Location:</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="preferred_location" id="preferred_location" placeholder="Preferred City/Location" v-model="preferred_location" v-on:blur="track('preferred_location')" required="required">
+    </div>
+  </div>
+  
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button type="submit" class="btn btn-default">Match me!</button>
+    </div>
+  </div>
+</form>
+{% endblock %}
+
+{% block js %}
+<script src="static/js/vue.min.js"></script>
+<script src="static/js/questionnaire.js"></script>
+{% endblock %}
